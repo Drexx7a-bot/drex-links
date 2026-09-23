@@ -1,1023 +1,915 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DREX | Official Links</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:Arial,"Tahoma",sans-serif;
-    color:#fff;
-    background:#050308;
-    overflow-x:hidden;
-}
-
-/* ===== الخلفية ===== */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-3;
-    background:
-        radial-gradient(circle at 15% 10%,rgba(143,52,255,.24),transparent 28%),
-        radial-gradient(circle at 85% 25%,rgba(93,25,180,.18),transparent 30%),
-        radial-gradient(circle at 50% 100%,rgba(118,40,190,.13),transparent 35%),
-        #050308;
-}
-
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-2;
-    opacity:.18;
-    background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:55px 55px;
-    mask-image:linear-gradient(to bottom,black,transparent);
-}
-
-/* ===== الحاوية ===== */
-
-.container{
-    width:min(1120px,92%);
-    margin:auto;
-}
-
-/* ===== الهيدر ===== */
-
-header{
-    height:82px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    direction:ltr;
-}
-
-.header-logo{
-    width:48px;
-    height:48px;
-    object-fit:contain;
-}
-
-.menu-button{
-    width:48px;
-    height:48px;
-    border-radius:14px;
-    border:1px solid rgba(255,255,255,.1);
-    background:rgba(255,255,255,.055);
-    color:#fff;
-    font-size:24px;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:.25s;
-}
-
-.menu-button:hover{
-    background:rgba(145,58,235,.3);
-    border-color:#9b4dff;
-}
-
-/* ===== القائمة الجانبية ===== */
-
-.overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.65);
-    backdrop-filter:blur(4px);
-    z-index:90;
-    opacity:0;
-    visibility:hidden;
-    transition:.3s;
-}
-
-.overlay.active{
-    opacity:1;
-    visibility:visible;
-}
-
-.side-menu{
-    position:fixed;
-    top:0;
-    left:0;
-    width:min(330px,85%);
-    height:100vh;
-    background:
-        linear-gradient(180deg,#13091e,#08050b);
-    border-right:1px solid rgba(168,85,247,.22);
-    z-index:100;
-    transform:translateX(-100%);
-    transition:.35s ease;
-    padding:25px;
-    box-shadow:15px 0 60px rgba(0,0,0,.55);
-}
-
-.side-menu.active{
-    transform:translateX(0);
-}
-
-.menu-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:35px;
-}
-
-.menu-brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.menu-brand img{
-    width:48px;
-    height:48px;
-    object-fit:contain;
-}
-
-.menu-brand strong{
-    font-size:20px;
-    letter-spacing:2px;
-}
-
-.close-menu{
-    width:42px;
-    height:42px;
-    border:0;
-    border-radius:12px;
-    background:rgba(255,255,255,.06);
-    color:#fff;
-    font-size:22px;
-    cursor:pointer;
-}
-
-.menu-links{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.menu-links a{
-    color:#ddd;
-    text-decoration:none;
-    padding:16px 17px;
-    border-radius:13px;
-    background:rgba(255,255,255,.035);
-    border:1px solid transparent;
-    transition:.2s;
-}
-
-.menu-links a:hover{
-    color:#fff;
-    background:rgba(151,61,245,.15);
-    border-color:rgba(168,85,247,.3);
-    transform:translateX(3px);
-}
-
-/* ===== Hero ===== */
-
-.hero{
-    text-align:center;
-    padding:60px 0 75px;
-}
-
-.hero-logo{
-    width:190px;
-    height:190px;
-    object-fit:contain;
-    filter:
-        drop-shadow(0 0 20px rgba(168,85,247,.3))
-        drop-shadow(0 0 60px rgba(122,42,210,.2));
-}
-
-.hero h1{
-    margin-top:18px;
-    font-size:54px;
-    letter-spacing:8px;
-    font-weight:800;
-}
-
-.hero-line{
-    width:70px;
-    height:3px;
-    background:linear-gradient(90deg,#7025b8,#b76cff);
-    margin:18px auto;
-    border-radius:10px;
-}
-
-.hero p{
-    color:#999;
-    font-size:15px;
-}
-
-/* ===== روابط ===== */
-
-.socials{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:11px;
-    margin-top:30px;
-}
-
-.socials a{
-    text-decoration:none;
-    color:#eee;
-    padding:12px 18px;
-    border-radius:13px;
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(255,255,255,.09);
-    transition:.25s;
-}
-
-.socials a:hover{
-    transform:translateY(-3px);
-    background:rgba(137,44,225,.2);
-    border-color:rgba(174,91,255,.5);
-}
-
-/* ===== الأقسام ===== */
-
-.section{
-    margin:70px 0;
-}
-
-.section-title{
-    font-size:28px;
-    font-weight:700;
-    margin-bottom:25px;
-    text-align:right;
-}
-
-.section-title::before{
-    content:"";
-    display:inline-block;
-    width:5px;
-    height:25px;
-    background:#9b4dff;
-    border-radius:5px;
-    margin-left:10px;
-    vertical-align:-3px;
-}
-
-/* ===== البث الحالي ===== */
-
-.live-box{
-    overflow:hidden;
-    border-radius:22px;
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(168,85,247,.22);
-    box-shadow:
-        0 20px 70px rgba(0,0,0,.35),
-        0 0 50px rgba(110,36,180,.08);
-}
-
-.live-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:19px 22px;
-    background:rgba(255,255,255,.025);
-}
-
-.live-name{
-    font-weight:bold;
-}
-
-.live-status{
-    color:#ff526d;
-    font-size:14px;
-    font-weight:bold;
-}
-
-.live-player{
-    width:100%;
-    aspect-ratio:16/9;
-    background:#020103;
-}
-
-.live-player iframe{
-    width:100%;
-    height:100%;
-    border:0;
-}
-
-.live-bottom{
-    padding:20px;
-}
-
-.live-bottom h3{
-    font-size:18px;
-    margin-bottom:7px;
-}
-
-.live-bottom p{
-    color:#888;
-    font-size:13px;
-}
-
-/* ===== البطاقات ===== */
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:16px;
-}
-
-.card{
-    display:block;
-    text-decoration:none;
-    color:#fff;
-    overflow:hidden;
-    border-radius:17px;
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(255,255,255,.075);
-    transition:.28s;
-}
-
-.card:hover{
-    transform:translateY(-7px);
-    border-color:rgba(164,75,255,.6);
-    box-shadow:0 15px 35px rgba(0,0,0,.3);
-}
-
-.thumb{
-    height:145px;
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:
-        radial-gradient(circle,#54217e,#170a22 65%,#09050c);
-    overflow:hidden;
-}
-
-.thumb::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(135deg,transparent 35%,rgba(255,255,255,.06));
-}
-
-.thumb-icon{
-    font-size:38px;
-    position:relative;
-    z-index:2;
-}
-
-.card-info{
-    padding:15px;
-}
-
-.card-title{
-    font-size:14px;
-    line-height:1.6;
-    color:#eee;
-}
-
-.card-meta{
-    color:#777;
-    font-size:11px;
-    margin-top:8px;
-}
-
-/* ===== عن DREX ===== */
-
-.about{
-    padding:30px;
-    border-radius:22px;
-    background:rgba(255,255,255,.04);
-    border:1px solid rgba(255,255,255,.07);
-    line-height:2;
-    color:#aaa;
-}
-
-/* ===== روابط مهمة ===== */
-
-.links{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-}
-
-.link{
-    text-decoration:none;
-    color:#eee;
-    padding:20px;
-    border-radius:16px;
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(255,255,255,.07);
-    transition:.25s;
-}
-
-.link:hover{
-    background:rgba(143,54,238,.15);
-    border-color:rgba(168,85,247,.4);
-}
-
-/* ===== الدعم ===== */
-
-.support{
-    text-align:center;
-    margin:80px 0 40px;
-}
-
-.support a{
-    display:inline-block;
-    padding:16px 40px;
-    border-radius:15px;
-    color:#fff;
-    text-decoration:none;
-    font-weight:bold;
-    background:linear-gradient(135deg,#7026ad,#a855f7);
-    box-shadow:0 10px 35px rgba(125,42,190,.25);
-    transition:.25s;
-}
-
-.support a:hover{
-    transform:translateY(-3px);
-}
-
-/* ===== الفوتر ===== */
-
-footer{
-    text-align:center;
-    color:#555;
-    font-size:12px;
-    padding:30px 0 40px;
-}
-
-/* ===== الجوال ===== */
-
-@media(max-width:850px){
-
-    .cards{
-        grid-template-columns:repeat(2,1fr);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DREX</title>
+  <meta name="description" content="DREX — جميع الحسابات والقنوات والمقاطع في مكان واحد.">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-}
-
-@media(max-width:600px){
-
-    .container{
-        width:90%;
+    :root {
+      --bg: #070707;
+      --card: rgba(18, 18, 18, 0.78);
+      --card-hover: rgba(28, 28, 28, 0.95);
+      --border: rgba(255,255,255,0.08);
+      --text: #ffffff;
+      --muted: #999;
+      --accent: #ffffff;
     }
 
-    .hero{
-        padding:40px 0 55px;
+    body {
+      font-family: "Cairo", sans-serif;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(255,255,255,.09), transparent 35%),
+        radial-gradient(circle at 10% 50%, rgba(255,255,255,.035), transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(255,255,255,.025), transparent 25%),
+        #070707;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    .hero-logo{
-        width:155px;
-        height:155px;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .035;
+      background-image:
+        linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
     }
 
-    .hero h1{
-        font-size:40px;
-        letter-spacing:5px;
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    .section{
-        margin:55px 0;
+    .container {
+      width: min(1100px, calc(100% - 32px));
+      margin: auto;
     }
 
-    .section-title{
-        font-size:23px;
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: rgba(7,7,7,.72);
+      border-bottom: 1px solid var(--border);
     }
 
-    .cards{
-        grid-template-columns:1fr;
+    .nav-inner {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .card{
-        display:grid;
-        grid-template-columns:135px 1fr;
-        min-height:105px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
 
-    .thumb{
-        height:100%;
-        min-height:105px;
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      object-fit: contain;
     }
 
-    .links{
-        grid-template-columns:1fr;
+    .nav-links {
+      display: flex;
+      gap: 8px;
     }
 
-    .live-head{
-        padding:16px;
+    .nav-links a {
+      padding: 9px 14px;
+      color: #aaa;
+      border-radius: 10px;
+      font-size: 13px;
+      transition: .25s;
     }
 
-    .live-bottom{
-        padding:17px;
+    .nav-links a:hover {
+      color: #fff;
+      background: rgba(255,255,255,.07);
     }
 
-}
-</style>
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      text-align: center;
+      padding: 90px 0 70px;
+    }
+
+    .hero-logo {
+      width: 105px;
+      height: 105px;
+      object-fit: contain;
+      margin-bottom: 25px;
+      filter: drop-shadow(0 15px 45px rgba(255,255,255,.08));
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 78px);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: 4px;
+    }
+
+    .hero p {
+      margin: 22px auto 0;
+      max-width: 570px;
+      color: #999;
+      font-size: 15px;
+      line-height: 2;
+    }
+
+    /* =========================
+       APP BUTTONS
+    ========================= */
+
+    .social-grid {
+      margin-top: 35px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .social-btn {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.055),
+        rgba(255,255,255,.015)
+      );
+      transition: .28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-btn::before {
+      content: "";
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: rgba(255,255,255,.06);
+      filter: blur(35px);
+      border-radius: 50%;
+      opacity: 0;
+      transition: .3s;
+    }
+
+    .social-btn:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,255,255,.18);
+      background: var(--card-hover);
+      box-shadow: 0 15px 40px rgba(0,0,0,.35);
+    }
+
+    .social-btn:hover::before {
+      opacity: 1;
+    }
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .social-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    .social-name {
+      font-size: 14px;
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    section {
+      padding: 45px 0;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+
+    .section-title h2 {
+      font-size: 25px;
+      font-weight: 800;
+    }
+
+    .section-title span {
+      color: #666;
+      font-size: 12px;
+    }
+
+    /* =========================
+       CLIPS
+    ========================= */
+
+    .clips {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .clip {
+      position: relative;
+      min-height: 190px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #111;
+      transition: .3s;
+    }
+
+    .clip:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,.18);
+    }
+
+    .clip-image {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(0,0,0,.95), rgba(0,0,0,.05)),
+        radial-gradient(circle at center, #282828, #0c0c0c);
+    }
+
+    .clip-content {
+      position: relative;
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 17px;
+    }
+
+    .clip-tag {
+      width: fit-content;
+      padding: 4px 9px;
+      border-radius: 7px;
+      background: rgba(255,255,255,.09);
+      color: #bbb;
+      font-size: 10px;
+      margin-bottom: 7px;
+    }
+
+    .clip h3 {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .clip p {
+      color: #777;
+      font-size: 10px;
+      margin-top: 4px;
+    }
+
+    /* =========================
+       KICK
+    ========================= */
+
+    .kick-card {
+      min-height: 150px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 80% 50%, rgba(0,255,100,.06), transparent 35%),
+        linear-gradient(145deg, #111, #090909);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px;
+      transition: .3s;
+    }
+
+    .kick-card:hover {
+      border-color: rgba(255,255,255,.18);
+      transform: translateY(-3px);
+    }
+
+    .kick-info {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .kick-logo {
+      width: 58px;
+      height: 58px;
+      border-radius: 15px;
+      background: #53fc18;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #050505;
+      font-size: 19px;
+    }
+
+    .kick-info h3 {
+      font-size: 18px;
+    }
+
+    .kick-info p {
+      color: #777;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .visit-btn {
+      padding: 11px 18px;
+      border-radius: 11px;
+      background: #fff;
+      color: #050505;
+      font-size: 12px;
+      font-weight: 800;
+      transition: .25s;
+    }
+
+    .visit-btn:hover {
+      transform: scale(1.04);
+    }
+
+    /* =========================
+       UPCOMING
+    ========================= */
+
+    .upcoming {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .stream-card {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .stream-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      background: #555;
+      border-radius: 50%;
+    }
+
+    .status {
+      color: #666;
+      font-size: 11px;
+    }
+
+    .stream-card h3 {
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .stream-card p {
+      color: #666;
+      font-size: 11px;
+    }
+
+    .timer {
+      display: flex;
+      gap: 7px;
+      margin-top: 17px;
+    }
+
+    .timer div {
+      flex: 1;
+      text-align: center;
+      padding: 9px 3px;
+      border-radius: 9px;
+      background: rgba(255,255,255,.045);
+    }
+
+    .timer strong {
+      display: block;
+      font-size: 16px;
+    }
+
+    .timer span {
+      color: #555;
+      font-size: 8px;
+    }
+
+    /* =========================
+       SUPPORT
+    ========================= */
+
+    .support {
+      text-align: center;
+      margin: 35px 0 70px;
+      padding: 50px 20px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,.055), transparent 60%),
+        rgba(255,255,255,.015);
+    }
+
+    .support h2 {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .support p {
+      color: #777;
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .support-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 22px;
+      border-radius: 12px;
+      background: #fff;
+      color: #050505;
+      font-size: 13px;
+      font-weight: 800;
+      transition: .25s;
+    }
+
+    .support-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(255,255,255,.08);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      text-align: center;
+      color: #555;
+      font-size: 11px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 800px) {
+      .nav-links {
+        display: none;
+      }
+
+      .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .clips {
+        grid-template-columns: 1fr;
+      }
+
+      .upcoming {
+        grid-template-columns: 1fr;
+      }
+
+      .kick-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+      }
+
+      .visit-btn {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .container {
+        width: min(100% - 22px, 1100px);
+      }
+
+      .hero {
+        padding-top: 65px;
+      }
+
+      .social-grid {
+        gap: 8px;
+      }
+
+      .social-btn {
+        min-height: 72px;
+      }
+
+      .social-name {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- القائمة -->
+  <!-- =========================
+       NAVBAR
+  ========================= -->
 
-<div class="overlay" id="overlay"></div>
+  <nav>
+    <div class="container nav-inner">
 
-<aside class="side-menu" id="sideMenu">
+      <a href="#" class="brand">
+        <img src="drex-logo.png" class="brand-logo" alt="DREX">
+        <span>DREX</span>
+      </a>
 
-    <div class="menu-head">
-
-        <div class="menu-brand">
-            <img src="drex-logo.png" alt="DREX">
-            <strong>DREX</strong>
-        </div>
-
-        <button class="close-menu" id="closeMenu">×</button>
-
-    </div>
-
-    <div class="menu-links">
-
-        <a href="#home">الرئيسية</a>
-
-        <a href="#live">البث الحالي</a>
-
-        <a href="#youtube">آخر مقاطع DREX</a>
-
-        <a href="#kick">آخر بثوث DREX</a>
-
-        <a href="#about">عن DREX</a>
-
-        <a href="#links">الروابط المهمة</a>
-
-        <a href="https://t.me/ROOE11" target="_blank">
-            الدعم والتواصل
-        </a>
+      <div class="nav-links">
+        <a href="#social">الحسابات</a>
+        <a href="#clips">المقاطع</a>
+        <a href="#kick">Kick</a>
+        <a href="#support">الدعم</a>
+      </div>
 
     </div>
+  </nav>
 
-</aside>
 
+  <!-- =========================
+       HERO
+  ========================= -->
 
-<div class="container">
+  <main>
 
-<header>
+    <div class="container">
 
-    <button class="menu-button" id="menuButton">
-        ☰
-    </button>
+      <section class="hero">
 
-    <img src="drex-logo.png" class="header-logo" alt="DREX">
+        <!-- ضع شعار DREX باسم drex-logo.png -->
+        <img src="drex-logo.png" class="hero-logo" alt="DREX">
 
-</header>
-
-
-<!-- Hero -->
-
-<section class="hero" id="home">
-
-    <img src="drex-logo.png" class="hero-logo" alt="DREX">
-
-    <h1>DREX</h1>
-
-    <div class="hero-line"></div>
-
-    <p>
-        الحسابات والقنوات الرسمية لـ DREX
-    </p>
-
-    <div class="socials">
-
-        <a href="https://x.com/DREX_7A" target="_blank">
-            𝕏 X
-        </a>
-
-        <a href="https://youtube.com/@drex_7a" target="_blank">
-            ▶ YouTube
-        </a>
-
-        <a href="https://kick.com/drex-7a" target="_blank">
-            🔴 Kick
-        </a>
-
-        <a href="https://t.me/drexx7a" target="_blank">
-            ✈ Telegram
-        </a>
-
-        <a href="https://discord.gg/96vBrJ69E" target="_blank">
-            Discord
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- البث الحالي -->
-
-<section class="section" id="live">
-
-    <h2 class="section-title">
-        البث الحالي
-    </h2>
-
-    <div class="live-box">
-
-        <div class="live-head">
-
-            <span class="live-name">
-                DREX-7A
-            </span>
-
-            <span class="live-status">
-                ● مباشر
-            </span>
-
-        </div>
-
-        <div class="live-player">
-
-            <iframe
-                src="https://player.kick.com/drex-7a"
-                allowfullscreen>
-            </iframe>
-
-        </div>
-
-        <div class="live-bottom">
-
-            <h3>بث DREX الحالي</h3>
-
-            <p>
-                شاهد البث مباشرة من Kick.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- آخر مقاطع -->
-
-<section class="section" id="youtube">
-
-    <h2 class="section-title">
-        آخر مقاطع DREX
-    </h2>
-
-    <div class="cards">
-
-        <!-- ضع رابط المقطع الحقيقي هنا -->
-
-        <a class="card" href="#" target="_blank">
-
-            <div class="thumb">
-                <span class="thumb-icon">▶</span>
-            </div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-                    أحدث مقطع من DREX
-                </div>
-
-                <div class="card-meta">
-                    YouTube
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <a class="card" href="#" target="_blank">
-
-            <div class="thumb">
-                <span class="thumb-icon">▶</span>
-            </div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-                    أحدث مقطع من DREX
-                </div>
-
-                <div class="card-meta">
-                    YouTube
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <a class="card" href="#" target="_blank">
-
-            <div class="thumb">
-                <span class="thumb-icon">▶</span>
-            </div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-                    أحدث مقطع من DREX
-                </div>
-
-                <div class="card-meta">
-                    YouTube
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <a class="card" href="#" target="_blank">
-
-            <div class="thumb">
-                <span class="thumb-icon">▶</span>
-            </div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-                    أحدث مقطع من DREX
-                </div>
-
-                <div class="card-meta">
-                    YouTube
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <a class="card" href="#" target="_blank">
-
-            <div class="thumb">
-                <span class="thumb-icon">▶</span>
-            </div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-                    أحدث مقطع من DREX
-                </div>
-
-                <div class="card-meta">
-                    YouTube
-                </div>
-
-            </div>
-
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- آخر بثوث -->
-
-<section class="section" id="kick">
-
-    <h2 class="section-title">
-        آخر بثوث DREX
-    </h2>
-
-    <div class="cards">
-
-        <a class="card" href="#" target="_blank">
-
-            <div class="thumb">
-                <span class="thumb-icon">🔴</span>
-            </div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-                    آخر بث لـ DREX
-                </div>
-
-                <div class="card-meta">
-                    Kick
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <a class="card" href="#" target="_blank">
-
-            <div class="thumb">
-                <span class="thumb-icon">🔴</span>
-            </div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-                    آخر بث لـ DREX
-                </div>
-
-                <div class="card-meta">
-                    Kick
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <a class="card" href="#" target="_blank">
-
-            <div class="thumb">
-                <span class="thumb-icon">🔴</span>
-            </div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-                    آخر بث لـ DREX
-                </div>
-
-                <div class="card-meta">
-                    Kick
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <a class="card" href="#" target="_blank">
-
-            <div class="thumb">
-                <span class="thumb-icon">🔴</span>
-            </div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-                    آخر بث لـ DREX
-                </div>
-
-                <div class="card-meta">
-                    Kick
-                </div>
-
-            </div>
-
-        </a>
-
-
-        <a class="card" href="#" target="_blank">
-
-            <div class="thumb">
-                <span class="thumb-icon">🔴</span>
-            </div>
-
-            <div class="card-info">
-
-                <div class="card-title">
-                    آخر بث لـ DREX
-                </div>
-
-                <div class="card-meta">
-                    Kick
-                </div>
-
-            </div>
-
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- عن DREX -->
-
-<section class="section" id="about">
-
-    <h2 class="section-title">
-        عن DREX
-    </h2>
-
-    <div class="about">
+        <h1>DREX</h1>
 
         <p>
-            مرحباً بك في الموقع الرسمي لـ DREX.
-            هنا تجد الحسابات والقنوات والمحتوى وروابط التواصل
-            في مكان واحد.
+          جميع الحسابات والقنوات والمقاطع في مكان واحد.
+          تابع آخر المحتوى وتواصل معنا بسهولة.
         </p>
 
+        <!-- أزرار التطبيقات -->
+        <div class="social-grid" id="social">
+
+          <!-- X -->
+          <a class="social-btn" href="#" target="_blank">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.964 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </div>
+            <span class="social-name">X</span>
+          </a>
+
+          <!-- Kick -->
+          <a class="social-btn" href="#" target="_blank">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 3h7v4h2V3h7v7h-4v4h4v7h-7v-5h-2v5H4V3z"/>
+              </svg>
+            </div>
+            <span class="social-name">Kick</span>
+          </a>
+
+          <!-- Telegram -->
+          <a class="social-btn" href="#" target="_blank">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M21.7 3.3 18.6 20c-.2 1.2-.9 1.5-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.3-8.4c.4-.4-.1-.6-.6-.2L6 13.7l-5-1.6c-1.1-.3-1.1-1.1.2-1.6L20.7 2c.9-.3 1.7.2 1 1.3z"/>
+              </svg>
+            </div>
+            <span class="social-name">Telegram</span>
+          </a>
+
+          <!-- Discord -->
+          <a class="social-btn" href="https://discord.gg/96vBrJ69E" target="_blank">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M19.54 5.23A16.9 16.9 0 0 0 15.36 4l-.52 1.06a15.5 15.5 0 0 0-5.68 0L8.64 4a16.9 16.9 0 0 0-4.18 1.23C1.8 9.2 1.08 13.07 1.44 16.88a16.9 16.9 0 0 0 5.16 2.61l1.25-1.7c-.69-.25-1.35-.56-1.97-.92l.48-.36c3.79 1.76 7.9 1.76 11.64 0l.49.36c-.63.36-1.29.67-1.98.92l1.25 1.7a16.9 16.9 0 0 0 5.16-2.61c.42-4.42-.72-8.25-3.38-11.65zM8.2 15.02c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2c1.11 0 2 .99 2 2.2-.01 1.21-.89 2.2-2 2.2zm7.6 0c-1.1 0-2-.99-2-2.2s.88-2.2 2-2.2 2 .99 2 2.2-.89 2.2-2 2.2z"/>
+              </svg>
+            </div>
+            <span class="social-name">Discord</span>
+          </a>
+
+          <!-- YouTube -->
+          <a class="social-btn" href="#" target="_blank">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.9V8.1l6.5 3.9-6.5 3.9z"/>
+              </svg>
+            </div>
+            <span class="social-name">YouTube</span>
+          </a>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           CLIPS
+      ========================= -->
+
+      <section id="clips">
+
+        <div class="section-title">
+          <div>
+            <h2>آخر المقاطع</h2>
+            <span>أحدث المقاطع المنشورة في قناة DREX</span>
+          </div>
+        </div>
+
+        <div class="clips">
+
+          <a href="#" class="clip" target="_blank">
+            <div class="clip-image"></div>
+            <div class="clip-content">
+              <span class="clip-tag">DREX</span>
+              <h3>آخر مقطع منشور</h3>
+              <p>اضغط لمشاهدة المقطع في القناة</p>
+            </div>
+          </a>
+
+          <a href="#" class="clip" target="_blank">
+            <div class="clip-image"></div>
+            <div class="clip-content">
+              <span class="clip-tag">DREX</span>
+              <h3>آخر مقطع منشور</h3>
+              <p>اضغط لمشاهدة المقطع في القناة</p>
+            </div>
+          </a>
+
+          <a href="#" class="clip" target="_blank">
+            <div class="clip-image"></div>
+            <div class="clip-content">
+              <span class="clip-tag">DREX</span>
+              <h3>آخر مقطع منشور</h3>
+              <p>اضغط لمشاهدة المقطع في القناة</p>
+            </div>
+          </a>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           KICK
+      ========================= -->
+
+      <section id="kick">
+
+        <div class="section-title">
+          <div>
+            <h2>Kick</h2>
+            <span>تابع البثوث والمحتوى المباشر</span>
+          </div>
+        </div>
+
+        <a href="#" class="kick-card" target="_blank">
+
+          <div class="kick-info">
+
+            <div class="kick-logo">
+              K
+            </div>
+
+            <div>
+              <h3>DREX على Kick</h3>
+              <p>شاهد البثوث والمحتوى المباشر</p>
+            </div>
+
+          </div>
+
+          <span class="visit-btn">
+            زيارة القناة
+          </span>
+
+        </a>
+
+      </section>
+
+
+      <!-- =========================
+           UPCOMING STREAMS
+      ========================= -->
+
+      <section>
+
+        <div class="section-title">
+          <div>
+            <h2>البث القادم</h2>
+            <span>سيتم تحديث المواعيد عند توفرها</span>
+          </div>
+        </div>
+
+        <div class="upcoming">
+
+          <div class="stream-card">
+
+            <div class="stream-top">
+              <span class="status">لم يبدأ</span>
+              <span class="live-dot"></span>
+            </div>
+
+            <h3>البث القادم</h3>
+            <p>سيتم الإعلان عن الموعد قريبًا</p>
+
+            <div class="timer">
+              <div>
+                <strong>00</strong>
+                <span>يوم</span>
+              </div>
+
+              <div>
+                <strong>00</strong>
+                <span>ساعة</span>
+              </div>
+
+              <div>
+                <strong>00</strong>
+                <span>دقيقة</span>
+              </div>
+
+              <div>
+                <strong>00</strong>
+                <span>ثانية</span>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="stream-card">
+
+            <div class="stream-top">
+              <span class="status">لم يبدأ</span>
+              <span class="live-dot"></span>
+            </div>
+
+            <h3>البث القادم</h3>
+            <p>سيتم الإعلان عن الموعد قريبًا</p>
+
+            <div class="timer">
+              <div>
+                <strong>00</strong>
+                <span>يوم</span>
+              </div>
+
+              <div>
+                <strong>00</strong>
+                <span>ساعة</span>
+              </div>
+
+              <div>
+                <strong>00</strong>
+                <span>دقيقة</span>
+              </div>
+
+              <div>
+                <strong>00</strong>
+                <span>ثانية</span>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="stream-card">
+
+            <div class="stream-top">
+              <span class="status">لم يبدأ</span>
+              <span class="live-dot"></span>
+            </div>
+
+            <h3>البث القادم</h3>
+            <p>سيتم الإعلان عن الموعد قريبًا</p>
+
+            <div class="timer">
+              <div>
+                <strong>00</strong>
+                <span>يوم</span>
+              </div>
+
+              <div>
+                <strong>00</strong>
+                <span>ساعة</span>
+              </div>
+
+              <div>
+                <strong>00</strong>
+                <span>دقيقة</span>
+              </div>
+
+              <div>
+                <strong>00</strong>
+                <span>ثانية</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           SUPPORT
+      ========================= -->
+
+      <section id="support">
+
+        <div class="support">
+
+          <h2>تحتاج إلى مساعدة؟</h2>
+
+          <p>
+            تواصل معنا مباشرة عبر حساب الدعم.
+          </p>
+
+          <a
+            class="support-btn"
+            href="https://t.me/ROOE11"
+            target="_blank"
+          >
+            الدعم عبر Telegram
+          </a>
+
+        </div>
+
+      </section>
+
     </div>
 
-</section>
+  </main>
 
 
-<!-- الروابط -->
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
-<section class="section" id="links">
-
-    <h2 class="section-title">
-        الروابط المهمة
-    </h2>
-
-    <div class="links">
-
-        <a class="link"
-           href="https://youtube.com/@drex_7a"
-           target="_blank">
-            ▶ قناة YouTube
-        </a>
-
-        <a class="link"
-           href="https://kick.com/drex-7a"
-           target="_blank">
-            🔴 قناة Kick
-        </a>
-
-        <a class="link"
-           href="https://t.me/drexx7a"
-           target="_blank">
-            ✈ قناة Telegram
-        </a>
-
-        <a class="link"
-           href="https://discord.gg/96vBrJ69E"
-           target="_blank">
-            💬 مجتمع Discord
-        </a>
-
+  <footer>
+    <div class="container">
+      © 2026 DREX — جميع الحقوق محفوظة
     </div>
+  </footer>
 
-</section>
-
-
-<!-- الدعم -->
-
-<div class="support">
-
-    <a href="https://t.me/ROOE11" target="_blank">
-        الدعم والتواصل
-    </a>
-
-</div>
-
-
-<footer>
-    © 2026 DREX — جميع الحقوق محفوظة
-</footer>
-
-</div>
-
-
-<script>
-
-const menuButton = document.getElementById("menuButton");
-const closeMenu = document.getElementById("closeMenu");
-const sideMenu = document.getElementById("sideMenu");
-const overlay = document.getElementById("overlay");
-
-function openMenu(){
-    sideMenu.classList.add("active");
-    overlay.classList.add("active");
-}
-
-function closeSideMenu(){
-    sideMenu.classList.remove("active");
-    overlay.classList.remove("active");
-}
-
-menuButton.addEventListener("click",openMenu);
-closeMenu.addEventListener("click",closeSideMenu);
-overlay.addEventListener("click",closeSideMenu);
-
-document.querySelectorAll(".menu-links a").forEach(link=>{
-    link.addEventListener("click",closeSideMenu);
-});
-
-</script>
 
 </body>
 </html>

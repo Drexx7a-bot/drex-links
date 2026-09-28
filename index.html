@@ -25,7 +25,9 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
+
 html{scroll-behavior:smooth}
+
 body{
  background:
  radial-gradient(circle at 50% -10%,rgba(137,45,218,.22),transparent 35%),
@@ -35,319 +37,956 @@ body{
  font-family:Cairo,Arial,sans-serif;
  overflow-x:hidden;
 }
+
 body.light{
- --bg:#f5effa;--bg2:#eee4f5;--card:rgba(255,255,255,.8);
- --card2:#fff;--txt:#1d1224;--muted:#705e79;
+ --bg:#f5effa;
+ --bg2:#eee4f5;
+ --card:rgba(255,255,255,.8);
+ --card2:#fff;
+ --txt:#1d1224;
+ --muted:#705e79;
 }
+
 body:before{
- content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;
- background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+ content:"";
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ opacity:.12;
+ background-image:
+ linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
  linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
  background-size:70px 70px;
 }
 
 /* LOADING */
+
 #loader{
- position:fixed;inset:0;z-index:9999;background:#08020d;
- display:grid;place-items:center;transition:.7s;
+ position:fixed;
+ inset:0;
+ z-index:9999;
+ background:#08020d;
+ display:grid;
+ place-items:center;
+ transition:.7s;
 }
+
 .loader-box{text-align:center}
+
 .loader-logo{
- width:90px;height:90px;object-fit:contain;
+ width:90px;
+ height:90px;
+ object-fit:contain;
  filter:drop-shadow(0 0 30px rgba(157,78,232,.5));
  animation:loaderPulse 1.5s infinite;
 }
+
 .loader-line{
- width:100px;height:2px;margin:20px auto;
+ width:100px;
+ height:2px;
+ margin:20px auto;
  background:linear-gradient(90deg,transparent,var(--p2),transparent);
 }
-@keyframes loaderPulse{50%{transform:scale(1.08);opacity:.7}}
+
+@keyframes loaderPulse{
+ 50%{
+  transform:scale(1.08);
+  opacity:.7;
+ }
+}
 
 /* HEADER */
+
 header{
- position:fixed;top:0;left:0;right:0;z-index:900;
- padding:14px 20px;transition:.3s;
+ position:fixed;
+ top:0;
+ left:0;
+ right:0;
+ z-index:900;
+ padding:14px 20px;
+ transition:.3s;
 }
+
 header.scrolled{
  background:rgba(7,2,12,.72);
  backdrop-filter:blur(20px);
  border-bottom:1px solid var(--line);
 }
-.head{
- max-width:1200px;margin:auto;
- display:flex;align-items:center;justify-content:space-between;
-}
-.brand{display:flex;align-items:center;gap:10px}
-.brand img{width:38px;height:38px;object-fit:contain}
-.brand b{letter-spacing:4px}
-.menu{
- width:44px;height:44px;border:1px solid var(--line);
- border-radius:13px;background:rgba(35,10,51,.75);
- display:grid;place-items:center;cursor:pointer;
-}
-.menu span,.menu span:before,.menu span:after{
- content:"";display:block;width:19px;height:2px;
- background:#eee;border-radius:4px;position:relative;
-}
-.menu span:before{position:absolute;top:-6px}
-.menu span:after{position:absolute;top:6px}
 
-/* SIDE */
-.overlay{
- position:fixed;inset:0;background:rgba(0,0,0,.62);
- backdrop-filter:blur(5px);z-index:1000;
- opacity:0;visibility:hidden;transition:.3s;
+.head{
+ max-width:1200px;
+ margin:auto;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
 }
-.overlay.on{opacity:1;visibility:visible}
+
+.brand{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ color:var(--txt);
+ text-decoration:none;
+}
+
+.brand img{
+ width:38px;
+ height:38px;
+ object-fit:contain;
+}
+
+.brand b{
+ letter-spacing:4px;
+}
+
+.menu{
+ width:44px;
+ height:44px;
+ border:1px solid var(--line);
+ border-radius:13px;
+ background:rgba(35,10,51,.75);
+ display:grid;
+ place-items:center;
+ cursor:pointer;
+}
+
+.menu span,
+.menu span:before,
+.menu span:after{
+ content:"";
+ display:block;
+ width:19px;
+ height:2px;
+ background:#eee;
+ border-radius:4px;
+ position:relative;
+}
+
+.menu span:before{
+ position:absolute;
+ top:-6px;
+}
+
+.menu span:after{
+ position:absolute;
+ top:6px;
+}
+
+/* SIDE MENU */
+
+.overlay{
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.62);
+ backdrop-filter:blur(5px);
+ z-index:1000;
+ opacity:0;
+ visibility:hidden;
+ transition:.3s;
+}
+
+.overlay.on{
+ opacity:1;
+ visibility:visible;
+}
+
 .side{
- position:fixed;top:0;right:0;width:min(350px,90vw);height:100vh;
- z-index:1100;background:#10041a;
+ position:fixed;
+ top:0;
+ right:0;
+ width:min(350px,90vw);
+ height:100vh;
+ z-index:1100;
+ background:#10041a;
  border-left:1px solid var(--line);
- padding:24px;transform:translateX(110%);
+ padding:24px;
+ transform:translateX(110%);
  transition:.4s cubic-bezier(.2,.8,.2,1);
  overflow:auto;
 }
-.side.on{transform:translateX(0)}
+
+.side.on{
+ transform:translateX(0);
+}
+
 .close{
- width:42px;height:42px;border:1px solid var(--line);
- background:#190727;color:white;border-radius:12px;
- font-size:23px;cursor:pointer;
+ width:42px;
+ height:42px;
+ border:1px solid var(--line);
+ background:#190727;
+ color:white;
+ border-radius:12px;
+ font-size:23px;
+ cursor:pointer;
 }
-.side-logo{text-align:center;padding:35px 0}
-.side-logo img{width:85px}
-.side-logo h2{letter-spacing:5px;margin-top:12px}
-.navs{display:grid;gap:7px}
+
+.side-logo{
+ text-align:center;
+ padding:35px 0;
+}
+
+.side-logo img{
+ width:85px;
+}
+
+.side-logo h2{
+ letter-spacing:5px;
+ margin-top:12px;
+}
+
+.navs{
+ display:grid;
+ gap:7px;
+}
+
 .navs a{
- padding:14px;border-radius:12px;color:#bba9c4;
- border:1px solid transparent;transition:.2s;
+ padding:14px;
+ border-radius:12px;
+ color:#bba9c4;
+ border:1px solid transparent;
+ transition:.2s;
+ text-decoration:none;
 }
-.navs a:hover{background:rgba(139,43,213,.1);border-color:var(--line);color:white}
+
+.navs a:hover{
+ background:rgba(139,43,213,.1);
+ border-color:var(--line);
+ color:white;
+}
 
 /* HERO */
+
 .hero{
- min-height:100vh;max-width:1200px;margin:auto;
- padding:150px 20px 100px;display:flex;
- flex-direction:column;align-items:center;justify-content:center;
- text-align:center;position:relative;
+ min-height:100vh;
+ max-width:1200px;
+ margin:auto;
+ padding:150px 20px 100px;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+ position:relative;
 }
+
 .glow{
- position:absolute;width:520px;height:520px;border-radius:50%;
- background:var(--glow);filter:blur(100px);pointer-events:none;
+ position:absolute;
+ width:520px;
+ height:520px;
+ border-radius:50%;
+ background:var(--glow);
+ filter:blur(100px);
+ pointer-events:none;
 }
+
 .logo{
- position:relative;width:165px;height:165px;
- display:grid;place-items:center;margin-bottom:28px;
+ position:relative;
+ width:165px;
+ height:165px;
+ display:grid;
+ place-items:center;
+ margin-bottom:28px;
 }
-.logo:before,.logo:after{
- content:"";position:absolute;border:1px solid var(--line);
- border-radius:50%;inset:0;animation:ring 4s infinite;
+
+.logo:before,
+.logo:after{
+ content:"";
+ position:absolute;
+ border:1px solid var(--line);
+ border-radius:50%;
+ inset:0;
+ animation:ring 4s infinite;
 }
-.logo:after{inset:15px;animation-delay:1s;opacity:.5}
+
+.logo:after{
+ inset:15px;
+ animation-delay:1s;
+ opacity:.5;
+}
+
 .logo img{
- width:110px;height:110px;object-fit:contain;
+ width:110px;
+ height:110px;
+ object-fit:contain;
  filter:drop-shadow(0 0 25px rgba(157,78,232,.35));
 }
-@keyframes ring{50%{transform:scale(1.07);opacity:.3}}
-.hero h1{
- font-size:clamp(55px,10vw,95px);line-height:1;
- letter-spacing:12px;font-weight:900;
- background:linear-gradient(#fff,#c58af1);
- -webkit-background-clip:text;color:transparent;
+
+@keyframes ring{
+ 50%{
+  transform:scale(1.07);
+  opacity:.3;
+ }
 }
-.hero p{max-width:620px;color:var(--muted);line-height:2;margin-top:20px}
+
+.hero h1{
+ font-size:clamp(55px,10vw,95px);
+ line-height:1;
+ letter-spacing:12px;
+ font-weight:900;
+ background:linear-gradient(#fff,#c58af1);
+ -webkit-background-clip:text;
+ color:transparent;
+}
+
+.hero p{
+ max-width:620px;
+ color:var(--muted);
+ line-height:2;
+ margin-top:20px;
+}
+
 .line{
- width:110px;height:1px;margin:28px 0;
+ width:110px;
+ height:1px;
+ margin:28px 0;
  background:linear-gradient(90deg,transparent,var(--p2),transparent);
 }
-.apps{display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
-.apps a{
- width:45px;height:45px;border-radius:12px;
- display:grid;place-items:center;
- color:#eadcf4;background:linear-gradient(145deg,#32134a,#160522);
- border:1px solid var(--line);transition:.25s;
+
+.apps{
+ display:flex;
+ gap:9px;
+ flex-wrap:wrap;
+ justify-content:center;
 }
+
+.apps a{
+ width:45px;
+ height:45px;
+ border-radius:12px;
+ display:grid;
+ place-items:center;
+ color:#eadcf4;
+ background:linear-gradient(145deg,#32134a,#160522);
+ border:1px solid var(--line);
+ transition:.25s;
+}
+
 .apps a:hover{
- transform:translateY(-4px);border-color:var(--p2);
+ transform:translateY(-4px);
+ border-color:var(--p2);
  box-shadow:0 0 28px rgba(157,78,232,.22);
 }
-.apps svg{width:20px;height:20px;fill:currentColor}
+
+.apps svg{
+ width:20px;
+ height:20px;
+ fill:currentColor;
+}
 
 /* GENERAL */
-section{padding:90px 20px}
-.container{max-width:1200px;margin:auto}
-.headline{text-align:center;margin-bottom:38px}
-.kicker{font-size:10px;color:var(--p3);letter-spacing:4px;font-weight:800}
-.headline h2{font-size:31px;margin-top:7px}
-.headline p{color:var(--muted);font-size:13px;margin-top:6px}
+
+section{
+ padding:90px 20px;
+}
+
+.container{
+ max-width:1200px;
+ margin:auto;
+}
+
+.headline{
+ text-align:center;
+ margin-bottom:38px;
+}
+
+.kicker{
+ font-size:10px;
+ color:var(--p3);
+ letter-spacing:4px;
+ font-weight:800;
+}
+
+.headline h2{
+ font-size:31px;
+ margin-top:7px;
+}
+
+.headline p{
+ color:var(--muted);
+ font-size:13px;
+ margin-top:6px;
+}
 
 /* NOW */
+
 .now{
- display:grid;grid-template-columns:1.4fr .8fr;gap:18px;
+ display:grid;
+ grid-template-columns:1.4fr .8fr;
+ gap:18px;
 }
+
 .panel{
- background:linear-gradient(145deg,rgba(30,10,46,.85),rgba(13,3,21,.92));
- border:1px solid var(--line);border-radius:22px;
+ background:linear-gradient(
+  145deg,
+  rgba(30,10,46,.85),
+  rgba(13,3,21,.92)
+ );
+ border:1px solid var(--line);
+ border-radius:22px;
  box-shadow:0 20px 60px rgba(68,15,100,.1);
 }
+
 .feature{
- min-height:310px;padding:30px;position:relative;overflow:hidden;
+ min-height:310px;
+ padding:30px;
+ position:relative;
+ overflow:hidden;
 }
+
 .feature:after{
- content:"";position:absolute;width:240px;height:240px;
- left:-90px;bottom:-120px;border-radius:50%;
- background:var(--glow);filter:blur(50px);
+ content:"";
+ position:absolute;
+ width:240px;
+ height:240px;
+ left:-90px;
+ bottom:-120px;
+ border-radius:50%;
+ background:var(--glow);
+ filter:blur(50px);
 }
+
 .badge{
- display:inline-flex;align-items:center;gap:7px;
- padding:6px 10px;border-radius:8px;
- background:rgba(133,40,214,.1);border:1px solid var(--line);
- font-size:10px;color:#d4bee1;
+ display:inline-flex;
+ align-items:center;
+ gap:7px;
+ padding:6px 10px;
+ border-radius:8px;
+ background:rgba(133,40,214,.1);
+ border:1px solid var(--line);
+ font-size:10px;
+ color:#d4bee1;
 }
-.dot{width:7px;height:7px;border-radius:50%;background:#807587}
-.dot.live{background:#b866ff;box-shadow:0 0 13px #a64cff}
-.feature h3{font-size:28px;margin-top:45px}
-.feature p{color:var(--muted);font-size:13px;margin-top:8px}
-.side-stat{padding:25px;display:grid;align-content:center}
-.stat-number{font-size:42px;font-weight:900;color:var(--p3)}
-.stat-label{color:var(--muted);font-size:12px}
+
+.dot{
+ width:7px;
+ height:7px;
+ border-radius:50%;
+ background:#807587;
+}
+
+.dot.live{
+ background:#b866ff;
+ box-shadow:0 0 13px #a64cff;
+}
+
+.feature h3{
+ font-size:28px;
+ margin-top:45px;
+}
+
+.feature p{
+ color:var(--muted);
+ font-size:13px;
+ margin-top:8px;
+}
+
+.side-stat{
+ padding:25px;
+ display:grid;
+ align-content:center;
+}
+
+.stat-number{
+ font-size:42px;
+ font-weight:900;
+ color:var(--p3);
+}
+
+.stat-label{
+ color:var(--muted);
+ font-size:12px;
+}
 
 /* CARDS */
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{
- overflow:hidden;border-radius:19px;background:var(--card);
- border:1px solid var(--line);transition:.3s;
+
+.grid3{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:18px;
 }
-.card:hover{transform:translateY(-6px);border-color:var(--line);box-shadow:0 25px 60px rgba(77,17,110,.15)}
+
+.card{
+ overflow:hidden;
+ border-radius:19px;
+ background:var(--card);
+ border:1px solid var(--line);
+ transition:.3s;
+}
+
+.card:hover{
+ transform:translateY(-6px);
+ box-shadow:0 25px 60px rgba(77,17,110,.15);
+}
+
 .thumb{
- aspect-ratio:16/9;overflow:hidden;position:relative;
+ aspect-ratio:16/9;
+ overflow:hidden;
+ position:relative;
  background:radial-gradient(circle,var(--glow),#100419);
 }
-.thumb img{width:100%;height:100%;object-fit:cover;transition:.4s}
-.card:hover .thumb img{transform:scale(1.05)}
+
+.thumb img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ transition:.4s;
+}
+
+.card:hover .thumb img{
+ transform:scale(1.05);
+}
+
 .platform{
- position:absolute;top:10px;right:10px;padding:5px 9px;
- border-radius:7px;background:rgba(8,2,13,.8);
- border:1px solid rgba(255,255,255,.08);font-size:9px;
+ position:absolute;
+ top:10px;
+ right:10px;
+ padding:5px 9px;
+ border-radius:7px;
+ background:rgba(8,2,13,.8);
+ border:1px solid rgba(255,255,255,.08);
+ font-size:9px;
 }
-.info{padding:17px}
-.info h3{font-size:14px;margin-bottom:14px}
+
+.info{
+ padding:17px;
+}
+
+.info h3{
+ font-size:14px;
+ margin-bottom:14px;
+}
+
 .btn{
- width:100%;display:flex;justify-content:center;padding:10px;
- border-radius:10px;background:rgba(142,48,216,.08);
- border:1px solid var(--line);font-size:11px;color:#dbc8e7;
+ width:100%;
+ display:flex;
+ justify-content:center;
+ padding:10px;
+ border-radius:10px;
+ background:rgba(142,48,216,.08);
+ border:1px solid var(--line);
+ font-size:11px;
+ color:#dbc8e7;
  transition:.2s;
+ text-decoration:none;
 }
-.btn:hover{background:rgba(142,48,216,.17);border-color:var(--p2)}
+
+.btn:hover{
+ background:rgba(142,48,216,.17);
+ border-color:var(--p2);
+}
 
 /* TIMELINE */
-.timeline{max-width:850px;margin:auto}
-.event{
- display:flex;gap:20px;position:relative;padding:0 0 28px;
-}
-.event:not(:last-child):before{
- content:"";position:absolute;right:6px;top:15px;bottom:0;
- width:1px;background:var(--line);
-}
-.event-dot{
- width:13px;height:13px;border-radius:50%;background:var(--p2);
- box-shadow:0 0 16px rgba(157,78,232,.5);flex:none;margin-top:5px;
-}
-.event-box{
- flex:1;padding:17px;border:1px solid var(--line);
- border-radius:15px;background:var(--card);
-}
-.event-box small{color:var(--p3);font-size:10px}
-.event-box h3{font-size:14px;margin-top:5px}
 
-/* GOAL */
-.goal{padding:30px;text-align:center}
-.goal-value{font-size:30px;font-weight:900}
-.progress{
- height:9px;border-radius:20px;background:#261332;
- margin:18px auto 8px;max-width:700px;overflow:hidden;
+.timeline{
+ max-width:850px;
+ margin:auto;
 }
-.progress i{
- display:block;width:84.2%;height:100%;
+
+.event{
+ display:flex;
+ gap:20px;
+ position:relative;
+ padding:0 0 28px;
+}
+
+.event:not(:last-child):before{
+ content:"";
+ position:absolute;
+ right:6px;
+ top:15px;
+ bottom:0;
+ width:1px;
+ background:var(--line);
+}
+
+.event-dot{
+ width:13px;
+ height:13px;
+ border-radius:50%;
+ background:var(--p2);
+ box-shadow:0 0 16px rgba(157,78,232,.5);
+ flex:none;
+ margin-top:5px;
+}
+
+.event-box{
+ flex:1;
+ padding:17px;
+ border:1px solid var(--line);
+ border-radius:15px;
+ background:var(--card);
+}
+
+.event-box small{
+ color:var(--p3);
+ font-size:10px;
+}
+
+.event-box h3{
+ font-size:14px;
+ margin-top:5px;
+}
+
+/* =========================
+   KICK VERIFICATION GOAL
+   ========================= */
+
+.goal{
+ padding:30px;
+ text-align:center;
+}
+
+.goal-value{
+ font-size:30px;
+ font-weight:900;
+}
+
+.goal-subtitle{
+ color:var(--muted);
+ font-size:12px;
+ margin-top:5px;
+}
+
+.kick-goals{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:14px;
+ margin-top:25px;
+ text-align:right;
+}
+
+.kick-goal{
+ padding:20px;
+ border-radius:17px;
+ background:rgba(20,6,30,.72);
+ border:1px solid var(--line);
+ transition:.25s;
+}
+
+.kick-goal:hover{
+ border-color:rgba(200,145,255,.35);
+ transform:translateY(-3px);
+ box-shadow:0 12px 35px rgba(90,20,130,.12);
+}
+
+.kick-goal-top{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ margin-bottom:9px;
+}
+
+.kick-goal-title{
+ font-size:13px;
+ font-weight:800;
+}
+
+.kick-goal-value{
+ font-size:13px;
+ color:var(--p3);
+ font-weight:800;
+ direction:ltr;
+}
+
+.kick-goal-desc{
+ color:var(--muted);
+ font-size:10px;
+ line-height:1.8;
+ margin-bottom:11px;
+}
+
+.kick-progress{
+ height:8px;
+ width:100%;
+ background:#261332;
+ border-radius:20px;
+ overflow:hidden;
+}
+
+.kick-progress i{
+ display:block;
+ height:100%;
+ border-radius:20px;
  background:linear-gradient(90deg,var(--p),var(--p3));
- border-radius:20px;box-shadow:0 0 15px rgba(157,78,232,.4);
+ box-shadow:0 0 15px rgba(157,78,232,.4);
 }
-.goal small{color:var(--muted)}
+
+.kick-progress.p50 i{width:50%}
+.kick-progress.p20 i{width:20%}
+.kick-progress.p2316 i{width:23.16%}
+
+.kick-check{
+ display:inline-flex;
+ align-items:center;
+ gap:6px;
+ margin-top:10px;
+ padding:4px 8px;
+ border-radius:7px;
+ background:rgba(157,78,232,.08);
+ border:1px solid var(--line);
+ color:#cdb9d9;
+ font-size:9px;
+}
+
+.kick-main-progress{
+ margin-top:25px;
+ padding-top:22px;
+ border-top:1px solid var(--line);
+}
+
+.kick-main-head{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ margin-bottom:9px;
+}
+
+.kick-main-head strong{
+ font-size:12px;
+}
+
+.kick-main-head span{
+ color:var(--p3);
+ font-size:12px;
+ font-weight:800;
+}
+
+.kick-note{
+ margin-top:15px;
+ color:var(--muted);
+ font-size:10px;
+ line-height:1.9;
+}
 
 /* VAULT */
+
 .search{
- max-width:550px;margin:0 auto 25px;
- display:flex;align-items:center;
- border:1px solid var(--line);border-radius:13px;
- background:var(--card);padding:0 15px;
+ max-width:550px;
+ margin:0 auto 25px;
+ display:flex;
+ align-items:center;
+ border:1px solid var(--line);
+ border-radius:13px;
+ background:var(--card);
+ padding:0 15px;
 }
+
 .search input{
- width:100%;padding:13px;background:none;border:0;outline:0;
- color:var(--txt);font-family:inherit;
+ width:100%;
+ padding:13px;
+ background:none;
+ border:0;
+ outline:0;
+ color:var(--txt);
+ font-family:inherit;
 }
 
 /* STORE */
+
 .coming{
- padding:55px 20px;text-align:center;
- background:radial-gradient(circle at top,var(--glow),transparent 65%),var(--card);
+ padding:55px 20px;
+ text-align:center;
+ background:
+ radial-gradient(circle at top,var(--glow),transparent 65%),
+ var(--card);
 }
-.coming h2{font-size:30px}
-.coming p{color:var(--muted);margin:10px 0 22px;font-size:13px}
+
+.coming h2{
+ font-size:30px;
+}
+
+.coming p{
+ color:var(--muted);
+ margin:10px 0 22px;
+ font-size:13px;
+}
 
 /* SUPPORT */
+
 .support{
- max-width:850px;margin:auto;padding:55px 20px;text-align:center;
+ max-width:850px;
+ margin:auto;
+ padding:55px 20px;
+ text-align:center;
 }
-.support h2{font-size:29px}
-.support p{color:var(--muted);font-size:13px;margin:8px 0 23px}
+
+.support h2{
+ font-size:29px;
+}
+
+.support p{
+ color:var(--muted);
+ font-size:13px;
+ margin:8px 0 23px;
+}
+
 .main-btn{
- display:inline-flex;padding:12px 24px;border-radius:12px;
+ display:inline-flex;
+ padding:12px 24px;
+ border-radius:12px;
  background:linear-gradient(135deg,#7524ce,#9d4ee8);
- color:white;font-size:13px;font-weight:800;
+ color:white;
+ font-size:13px;
+ font-weight:800;
  box-shadow:0 12px 35px rgba(126,37,217,.2);
  transition:.2s;
+ text-decoration:none;
+ border:0;
+ cursor:pointer;
+ font-family:inherit;
 }
-.main-btn:hover{transform:translateY(-3px)}
+
+.main-btn:hover{
+ transform:translateY(-3px);
+}
 
 /* FLOAT */
+
 .float{
- position:fixed;bottom:20px;left:20px;z-index:700;
- width:49px;height:49px;border-radius:15px;
- background:#190727;border:1px solid var(--line);
- color:#e9d8f5;display:grid;place-items:center;cursor:pointer;
+ position:fixed;
+ bottom:20px;
+ left:20px;
+ z-index:700;
+ width:49px;
+ height:49px;
+ border-radius:15px;
+ background:#190727;
+ border:1px solid var(--line);
+ color:#e9d8f5;
+ display:grid;
+ place-items:center;
+ cursor:pointer;
  box-shadow:0 10px 30px rgba(0,0,0,.25);
 }
-.float svg{width:20px}
+
+.float svg{
+ width:20px;
+}
 
 /* MODAL */
+
 .modal{
- position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.7);
- backdrop-filter:blur(8px);display:none;place-items:center;padding:20px;
+ position:fixed;
+ inset:0;
+ z-index:3000;
+ background:rgba(0,0,0,.7);
+ backdrop-filter:blur(8px);
+ display:none;
+ place-items:center;
+ padding:20px;
 }
-.modal.show{display:grid}
+
+.modal.show{
+ display:grid;
+}
+
 .modal-box{
- width:min(470px,100%);background:#12051d;
- border:1px solid var(--line);border-radius:22px;padding:25px;text-align:center;
+ width:min(470px,100%);
+ background:#12051d;
+ border:1px solid var(--line);
+ border-radius:22px;
+ padding:25px;
+ text-align:center;
 }
-.modal-box img{width:85px;margin:10px}
-.modal-box h2{margin:8px}
-.modal-box p{color:var(--muted);font-size:13px;margin:8px 0 20px}
-.modal-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+
+.modal-box img{
+ width:85px;
+ margin:10px;
+}
+
+.modal-box h2{
+ margin:8px;
+}
+
+.modal-box p{
+ color:var(--muted);
+ font-size:13px;
+ margin:8px 0 20px;
+}
+
+.modal-actions{
+ display:flex;
+ gap:8px;
+ justify-content:center;
+ flex-wrap:wrap;
+}
 
 /* REVEAL */
-.reveal{opacity:0;transform:translateY(22px);transition:.7s}
-.reveal.show{opacity:1;transform:none}
+
+.reveal{
+ opacity:0;
+ transform:translateY(22px);
+ transition:.7s;
+}
+
+.reveal.show{
+ opacity:1;
+ transform:none;
+}
+
+/* FOOTER */
+
+footer{
+ text-align:center;
+ padding:35px 20px 45px;
+ color:var(--muted);
+ font-size:10px;
+ border-top:1px solid rgba(181,100,245,.08);
+}
 
 /* RESPONSIVE */
+
 @media(max-width:800px){
- .now,.grid3{grid-template-columns:1fr}
- .hero{padding-top:130px}
- section{padding:70px 14px}
+
+ .now,
+ .grid3{
+  grid-template-columns:1fr;
+ }
+
+ .kick-goals{
+  grid-template-columns:1fr;
+ }
+
+ .hero{
+  padding-top:130px;
+ }
+
+ section{
+  padding:70px 14px;
+ }
+
 }
+
 @media(max-width:480px){
- .hero h1{font-size:49px;letter-spacing:7px}
- .logo{width:140px;height:140px}
- .logo img{width:95px;height:95px}
- .headline h2{font-size:25px}
+
+ .hero h1{
+  font-size:49px;
+  letter-spacing:7px;
+ }
+
+ .logo{
+  width:140px;
+  height:140px;
+ }
+
+ .logo img{
+  width:95px;
+  height:95px;
+ }
+
+ .headline h2{
+  font-size:25px;
+ }
+
+ .goal{
+  padding:22px 15px;
+ }
+
+ .kick-goal{
+  padding:17px;
+ }
+
 }
 </style>
 </head>
@@ -365,17 +1004,24 @@ section{padding:90px 20px}
 <!-- HEADER -->
 <header id="header">
  <div class="head">
+
   <a class="brand" href="#home">
    <img src="drex-logo.png" alt="DREX">
    <b>DREX</b>
   </a>
-  <button class="menu" id="openMenu"><span></span></button>
+
+  <button class="menu" id="openMenu">
+   <span></span>
+  </button>
+
  </div>
 </header>
 
 <!-- MENU -->
 <div class="overlay" id="overlay"></div>
+
 <aside class="side" id="side">
+
  <button class="close" id="close">×</button>
 
  <div class="side-logo">
@@ -395,10 +1041,12 @@ section{padding:90px 20px}
   <a href="#store">DREX Store</a>
   <a href="#support">الدعم</a>
  </nav>
+
 </aside>
 
 <!-- HERO -->
 <main id="home">
+
 <section class="hero">
 
  <div class="glow"></div>
@@ -418,31 +1066,48 @@ section{padding:90px 20px}
 
  <div class="apps reveal">
 
+  <!-- X -->
   <a href="https://x.com/DREX_7A" target="_blank" title="X">
-   <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26L22.827 21.75h-6.562l-5.146-6.73-5.889 6.73H1.92l7.73-8.835L1.5 2.25h6.73l4.65 6.151 5.364-6.151Z"/></svg>
+   <svg viewBox="0 0 24 24">
+    <path d="M18.244 2.25h3.308l-7.227 8.26L22.827 21.75h-6.562l-5.146-6.73-5.889 6.73H1.92l7.73-8.835L1.5 2.25h6.73l4.65 6.151 5.364-6.151Z"/>
+   </svg>
   </a>
 
+  <!-- KICK -->
   <a href="https://kick.com/drex-7a" target="_blank" title="Kick">
-   <svg viewBox="0 0 24 24"><path d="M4 3h6v6l4-6h7l-6 9 6 9h-7l-4-6v6H4V3Z"/></svg>
+   <svg viewBox="0 0 24 24">
+    <path d="M4 3h6v6l4-6h7l-6 9 6 9h-7l-4-6v6H4V3Z"/>
+   </svg>
   </a>
 
+  <!-- YOUTUBE -->
   <a href="https://youtube.com/@drex_7a" target="_blank" title="YouTube">
-   <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.12-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.58A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.12c1.88.58 9.38.58 9.38.58s7.5 0 9.38-.58a3 3 0 0 0 2.12-2.12A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6 3.5-6 3.5Z"/></svg>
+   <svg viewBox="0 0 24 24">
+    <path d="M23.5 6.2a3 3 0 0 0-2.12-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.58A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.12c1.88.58 9.38.58 9.38.58s7.5 0 9.38-.58a3 3 0 0 0 2.12-2.12A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6 3.5-6 3.5Z"/>
+   </svg>
   </a>
 
+  <!-- DISCORD -->
   <a href="https://discord.gg/96vBrJ69E" target="_blank" title="Discord">
-   <svg viewBox="0 0 24 24"><path d="M19.54 5.27A16.37 16.37 0 0 0 15.48 4l-.5 1.03a15.1 15.1 0 0 0-5.96 0L8.52 4a16.4 16.4 0 0 0-4.06 1.27C1.89 9.15 1.2 12.93 1.55 16.66a16.6 16.6 0 0 0 4.98 2.53l1.2-1.64a10.6 10.6 0 0 1-1.89-.91l.46-.35c3.64 1.69 7.58 1.69 11.18 0l.47.35c-.6.35-1.24.66-1.9.91l1.2 1.64a16.5 16.5 0 0 0 4.98-2.53c.41-4.35-.7-8.09-2.69-11.39Z"/></svg>
+   <svg viewBox="0 0 24 24">
+    <path d="M19.54 5.27A16.37 16.37 0 0 0 15.48 4l-.5 1.03a15.1 15.1 0 0 0-5.96 0L8.52 4a16.4 16.4 0 0 0-4.06 1.27C1.89 9.15 1.2 12.93 1.55 16.66a16.6 16.6 0 0 0 4.98 2.53l1.2-1.64a10.6 10.6 0 0 1-1.89-.91l.46-.35c3.64 1.69 7.58 1.69 11.18 0l.47.35c-.6.35-1.24.66-1.9.91l1.2 1.64a16.5 16.5 0 0 0 4.98-2.53c.41-4.35-.7-8.09-2.69-11.39Z"/>
+   </svg>
   </a>
 
+  <!-- TELEGRAM -->
   <a href="https://t.me/drexx7a" target="_blank" title="Telegram">
-   <svg viewBox="0 0 24 24"><path d="M21.8 4.2 18.7 19c-.24 1.05-.85 1.31-1.72.82l-4.75-3.5-2.29 2.2c-.25.25-.46.46-.94.46l.34-4.84 8.81-7.96c.38-.34-.08-.53-.59-.19L6.67 12.6l-4.66-1.46c-1.01-.32-1.03-1.01.21-1.5L20.4 3.18c.84-.31 1.58.2 1.4 1.02Z"/></svg>
+   <svg viewBox="0 0 24 24">
+    <path d="M21.8 4.2 18.7 19c-.24 1.05-.85 1.31-1.72.82l-4.75-3.5-2.29 2.2c-.25.25-.46.46-.94.46l.34-4.84 8.81-7.96c.38-.34-.08-.53-.59-.19L6.67 12.6l-4.66-1.46c-1.01-.32-1.03-1.01.21-1.5L20.4 3.18c.84-.31 1.58.2 1.4 1.02Z"/>
+   </svg>
   </a>
 
  </div>
+
 </section>
 
 <!-- DREX NOW -->
 <section id="now">
+
 <div class="container">
 
  <div class="headline reveal">
@@ -454,26 +1119,43 @@ section{padding:90px 20px}
  <div class="now">
 
   <div class="panel feature reveal">
-   <span class="badge"><i class="dot"></i> غير مباشر</span>
+
+   <span class="badge">
+    <i class="dot"></i>
+    غير مباشر
+   </span>
+
    <h3>لا يوجد بث حاليًا</h3>
-   <p>سيظهر البث هنا تلقائيًا عند بدء البث.</p>
+
+   <p>
+    سيظهر البث هنا تلقائيًا عند بدء البث.
+   </p>
+
   </div>
 
   <div class="panel side-stat reveal">
+
    <div class="stat-number">00:00</div>
    <div class="stat-label">البث الحالي</div>
+
    <br>
+
    <div class="stat-number">00</div>
    <div class="stat-label">البث القادم</div>
+
   </div>
 
  </div>
+
 </div>
+
 </section>
 
 <!-- FEATURED -->
 <section>
+
 <div class="container">
+
  <div class="headline reveal">
   <div class="kicker">FEATURED</div>
   <h2>المقطع المميز</h2>
@@ -481,23 +1163,43 @@ section{padding:90px 20px}
  </div>
 
  <div class="card reveal" style="max-width:850px;margin:auto">
+
   <div class="thumb">
-   <img src="https://i.ytimg.com/vi/vov8T4RxIFA/maxresdefault.jpg" alt="">
+
+   <img
+    src="https://i.ytimg.com/vi/vov8T4RxIFA/maxresdefault.jpg"
+    alt="DREX Featured"
+   >
+
    <span class="platform">FEATURED</span>
+
   </div>
+
   <div class="info">
+
    <h3>أحدث مقطع في قناة DREX</h3>
-   <a class="btn" href="https://youtu.be/vov8T4RxIFA?si=e9mLWlNyGOA3lMsy" target="_blank">
+
+   <a
+    class="btn"
+    href="https://youtu.be/vov8T4RxIFA?si=e9mLWlNyGOA3lMsy"
+    target="_blank"
+   >
     مشاهدة المقطع
    </a>
+
   </div>
+
  </div>
+
 </div>
+
 </section>
 
 <!-- CONTENT -->
 <section id="content">
+
 <div class="container">
+
  <div class="headline reveal">
   <div class="kicker">CONTENT</div>
   <h2>آخر المحتوى</h2>
@@ -506,79 +1208,188 @@ section{padding:90px 20px}
 
  <div class="grid3">
 
+  <!-- YOUTUBE 1 -->
   <article class="card reveal">
+
    <div class="thumb">
     <img src="https://i.ytimg.com/vi/vov8T4RxIFA/maxresdefault.jpg">
     <span class="platform">YOUTUBE</span>
    </div>
+
    <div class="info">
     <h3>أحدث مقطع</h3>
-    <a class="btn" href="https://youtu.be/vov8T4RxIFA?si=e9mLWlNyGOA3lMsy" target="_blank">مشاهدة</a>
+
+    <a
+     class="btn"
+     href="https://youtu.be/vov8T4RxIFA?si=e9mLWlNyGOA3lMsy"
+     target="_blank"
+    >
+     مشاهدة
+    </a>
    </div>
+
   </article>
 
+  <!-- YOUTUBE 2 -->
   <article class="card reveal">
+
    <div class="thumb">
     <img src="https://i.ytimg.com/vi/V7JxvoxSAaE/maxresdefault.jpg">
     <span class="platform">YOUTUBE</span>
    </div>
+
    <div class="info">
     <h3>مقطع سابق</h3>
-    <a class="btn" href="https://youtu.be/V7JxvoxSAaE?si=ewlJ4K89QZm8i21z" target="_blank">مشاهدة</a>
+
+    <a
+     class="btn"
+     href="https://youtu.be/V7JxvoxSAaE?si=ewlJ4K89QZm8i21z"
+     target="_blank"
+    >
+     مشاهدة
+    </a>
    </div>
+
   </article>
 
+  <!-- YOUTUBE 3 -->
   <article class="card reveal">
+
    <div class="thumb">
     <img src="https://i.ytimg.com/vi/pkQMa8PBNPI/maxresdefault.jpg">
     <span class="platform">YOUTUBE</span>
    </div>
+
    <div class="info">
     <h3>مقطع سابق</h3>
-    <a class="btn" href="https://youtu.be/pkQMa8PBNPI?si=KH_zQVW-wXNLP9tB" target="_blank">مشاهدة</a>
+
+    <a
+     class="btn"
+     href="https://youtu.be/pkQMa8PBNPI?si=KH_zQVW-wXNLP9tB"
+     target="_blank"
+    >
+     مشاهدة
+    </a>
    </div>
+
   </article>
 
+  <!-- KICK 1 -->
   <article class="card reveal">
-   <div class="thumb" style="display:grid;place-items:center">
-    <svg style="width:50px;fill:#c891ff" viewBox="0 0 24 24"><path d="M4 3h6v6l4-6h7l-6 9 6 9h-7l-4-6v6H4V3Z"/></svg>
+
+   <div
+    class="thumb"
+    style="display:grid;place-items:center"
+   >
+
+    <svg
+     style="width:50px;fill:#c891ff"
+     viewBox="0 0 24 24"
+    >
+     <path d="M4 3h6v6l4-6h7l-6 9 6 9h-7l-4-6v6H4V3Z"/>
+    </svg>
+
     <span class="platform">KICK</span>
+
    </div>
+
    <div class="info">
+
     <h3>أحدث بث</h3>
-    <a class="btn" href="https://kick.com/drex-7a/videos/01a0ce6f-2a78-7da5-a70d-2eea42341ec6" target="_blank">مشاهدة</a>
+
+    <a
+     class="btn"
+     href="https://kick.com/drex-7a/videos/01a0ce6f-2a78-7da5-a70d-2eea42341ec6"
+     target="_blank"
+    >
+     مشاهدة
+    </a>
+
    </div>
+
   </article>
 
+  <!-- KICK 2 -->
   <article class="card reveal">
-   <div class="thumb" style="display:grid;place-items:center">
-    <svg style="width:50px;fill:#c891ff" viewBox="0 0 24 24"><path d="M4 3h6v6l4-6h7l-6 9 6 9h-7l-4-6v6H4V3Z"/></svg>
+
+   <div
+    class="thumb"
+    style="display:grid;place-items:center"
+   >
+
+    <svg
+     style="width:50px;fill:#c891ff"
+     viewBox="0 0 24 24"
+    >
+     <path d="M4 3h6v6l4-6h7l-6 9 6 9h-7l-4-6v6H4V3Z"/>
+    </svg>
+
     <span class="platform">KICK</span>
+
    </div>
+
    <div class="info">
+
     <h3>بث سابق</h3>
-    <a class="btn" href="https://kick.com/drex-7a/videos/01a0cd8c-0dd8-721b-ab06-ee7fff6a3108" target="_blank">مشاهدة</a>
+
+    <a
+     class="btn"
+     href="https://kick.com/drex-7a/videos/01a0cd8c-0dd8-721b-ab06-ee7fff6a3108"
+     target="_blank"
+    >
+     مشاهدة
+    </a>
+
    </div>
+
   </article>
 
+  <!-- KICK 3 -->
   <article class="card reveal">
-   <div class="thumb" style="display:grid;place-items:center">
-    <svg style="width:50px;fill:#c891ff" viewBox="0 0 24 24"><path d="M4 3h6v6l4-6h7l-6 9 6 9h-7l-4-6v6H4V3Z"/></svg>
+
+   <div
+    class="thumb"
+    style="display:grid;place-items:center"
+   >
+
+    <svg
+     style="width:50px;fill:#c891ff"
+     viewBox="0 0 24 24"
+    >
+     <path d="M4 3h6v6l4-6h7l-6 9 6 9h-7l-4-6v6H4V3Z"/>
+    </svg>
+
     <span class="platform">KICK</span>
+
    </div>
+
    <div class="info">
+
     <h3>بث سابق</h3>
-    <a class="btn" href="https://kick.com/drex-7a/videos/01a0c8d9-20a0-739a-a069-de1b882c92f0" target="_blank">مشاهدة</a>
+
+    <a
+     class="btn"
+     href="https://kick.com/drex-7a/videos/01a0c8d9-20a0-739a-a069-de1b882c92f0"
+     target="_blank"
+    >
+     مشاهدة
+    </a>
+
    </div>
+
   </article>
 
  </div>
+
 </div>
+
 </section>
 
 <!-- TIMELINE -->
 <section id="timeline">
+
 <div class="container">
+
  <div class="headline reveal">
   <div class="kicker">TIMELINE</div>
   <h2>آخر النشاطات</h2>
@@ -587,36 +1398,49 @@ section{padding:90px 20px}
  <div class="timeline">
 
   <div class="event reveal">
+
    <i class="event-dot"></i>
+
    <div class="event-box">
     <small>YOUTUBE</small>
     <h3>تم نشر أحدث مقطع</h3>
    </div>
+
   </div>
 
   <div class="event reveal">
+
    <i class="event-dot"></i>
+
    <div class="event-box">
     <small>KICK</small>
     <h3>تم إنهاء آخر بث</h3>
    </div>
+
   </div>
 
   <div class="event reveal">
+
    <i class="event-dot"></i>
+
    <div class="event-box">
     <small>DREX</small>
     <h3>آخر تحديث للموقع</h3>
    </div>
+
   </div>
 
  </div>
+
 </div>
+
 </section>
 
 <!-- VAULT -->
 <section id="vault">
+
 <div class="container">
+
  <div class="headline reveal">
   <div class="kicker">VAULT</div>
   <h2>أرشيف DREX</h2>
@@ -624,244 +1448,659 @@ section{padding:90px 20px}
  </div>
 
  <div class="search reveal">
-  <input id="search" placeholder="ابحث عن مقطع أو بث...">
+
+  <input
+   id="search"
+   placeholder="ابحث عن مقطع أو بث..."
+  >
+
  </div>
 
  <div class="grid3" id="vaultGrid">
 
-  <article class="card reveal vault-card" data-title="احدث مقطع يوتيوب">
+  <article
+   class="card reveal vault-card"
+   data-title="احدث مقطع يوتيوب"
+  >
+
    <div class="info">
+
     <h3>أحدث مقطع YouTube</h3>
-    <a class="btn" href="https://youtu.be/vov8T4RxIFA?si=e9mLWlNyGOA3lMsy" target="_blank">فتح</a>
+
+    <a
+     class="btn"
+     href="https://youtu.be/vov8T4RxIFA?si=e9mLWlNyGOA3lMsy"
+     target="_blank"
+    >
+     فتح
+    </a>
+
    </div>
+
   </article>
 
-  <article class="card reveal vault-card" data-title="احدث بث كيك">
+  <article
+   class="card reveal vault-card"
+   data-title="احدث بث كيك"
+  >
+
    <div class="info">
+
     <h3>أحدث بث Kick</h3>
-    <a class="btn" href="https://kick.com/drex-7a/videos/01a0ce6f-2a78-7da5-a70d-2eea42341ec6" target="_blank">فتح</a>
+
+    <a
+     class="btn"
+     href="https://kick.com/drex-7a/videos/01a0ce6f-2a78-7da5-a70d-2eea42341ec6"
+     target="_blank"
+    >
+     فتح
+    </a>
+
    </div>
+
   </article>
 
  </div>
+
 </div>
+
 </section>
 
-<!-- GOAL -->
+<!-- =========================
+     GOAL / KICK VERIFICATION
+     ========================= -->
+
 <section id="goal">
+
 <div class="container">
+
  <div class="headline reveal">
+
   <div class="kicker">GOAL</div>
-  <h2>هدف DREX</h2>
+
+  <h2>الطريق إلى التحقق</h2>
+
+  <p>
+   أهداف DREX نحو متطلبات التحقق في KICK
+  </p>
+
  </div>
 
  <div class="panel goal reveal">
-  <div class="goal-value">8,420 / 10,000</div>
-  <div class="progress"><i></i></div>
-  <small>يمكن تعديل الأرقام لاحقًا</small>
+
+  <!-- MAIN -->
+  <div class="goal-value">
+   2 / 4
+  </div>
+
+  <div class="goal-subtitle">
+   التقدم الحالي في الأهداف
+  </div>
+
+  <div class="kick-main-progress">
+
+   <div class="kick-main-head">
+
+    <strong>التقدم العام</strong>
+
+    <span>50%</span>
+
+   </div>
+
+   <div class="kick-progress p50">
+    <i></i>
+   </div>
+
+  </div>
+
+  <!-- GOALS -->
+  <div class="kick-goals">
+
+   <!-- MONETIZATION -->
+   <div class="kick-goal">
+
+    <div class="kick-goal-top">
+
+     <div class="kick-goal-title">
+      تحقيق الدخل
+     </div>
+
+     <div class="kick-goal-value">
+      2 / 10
+     </div>
+
+    </div>
+
+    <div class="kick-goal-desc">
+     الوصول إلى 10 مشتركين خلال آخر 30 يومًا،
+     مع استثناء الاشتراكات المهداة.
+    </div>
+
+    <div class="kick-progress p20">
+     <i></i>
+    </div>
+
+    <div class="kick-check">
+     20% مكتمل
+    </div>
+
+   </div>
+
+   <!-- VIEWERS -->
+   <div class="kick-goal">
+
+    <div class="kick-goal-top">
+
+     <div class="kick-goal-title">
+      نجم العرض
+     </div>
+
+     <div class="kick-goal-value">
+      11.58 / 50
+     </div>
+
+    </div>
+
+    <div class="kick-goal-desc">
+     الوصول إلى 50 مشاهدًا خلال آخر 30 يومًا.
+    </div>
+
+    <div class="kick-progress p2316">
+     <i></i>
+    </div>
+
+    <div class="kick-check">
+     23.16% مكتمل
+    </div>
+
+   </div>
+
+   <!-- STREAM HOURS -->
+   <div class="kick-goal">
+
+    <div class="kick-goal-top">
+
+     <div class="kick-goal-title">
+      ساعات البث
+     </div>
+
+     <div class="kick-goal-value">
+      15 ساعة
+     </div>
+
+    </div>
+
+    <div class="kick-goal-desc">
+     هدف البث خلال آخر 30 يومًا.
+    </div>
+
+    <div class="kick-progress">
+     <i style="width:0%"></i>
+    </div>
+
+    <div class="kick-check">
+     يتم تحديث التقدم
+    </div>
+
+   </div>
+
+   <!-- CHAT -->
+   <div class="kick-goal">
+
+    <div class="kick-goal-top">
+
+     <div class="kick-goal-title">
+      المشاركون الفريدون في الدردشة
+     </div>
+
+     <div class="kick-goal-value">
+      100
+     </div>
+
+    </div>
+
+    <div class="kick-goal-desc">
+     الوصول إلى 100 مشارك فريد في الدردشة
+     خلال آخر 30 يومًا.
+    </div>
+
+    <div class="kick-progress">
+     <i style="width:0%"></i>
+    </div>
+
+    <div class="kick-check">
+     الهدف المطلوب
+    </div>
+
+   </div>
+
+  </div>
+
+  <div class="kick-note">
+   يتم تحديث الأرقام يدويًا من بيانات القناة.
+  </div>
+
  </div>
+
 </div>
+
 </section>
 
 <!-- CALENDAR -->
 <section id="calendar">
+
 <div class="container">
+
  <div class="headline reveal">
+
   <div class="kicker">CALENDAR</div>
+
   <h2>التقويم</h2>
+
   <p>البث القادم</p>
+
  </div>
 
  <div class="panel goal reveal">
-  <div class="stat-number">00:00</div>
-  <div class="stat-label">لم يتم تحديد البث القادم</div>
+
+  <div class="stat-number">
+   00:00
+  </div>
+
+  <div class="stat-label">
+   لم يتم تحديد البث القادم
+  </div>
+
  </div>
+
 </div>
+
 </section>
 
 <!-- CREATOR -->
 <section id="creator">
+
 <div class="container">
+
  <div class="headline reveal">
+
   <div class="kicker">CREATOR</div>
+
   <h2>عن DREX</h2>
+
  </div>
 
  <div class="panel support reveal">
-  <img src="drex-logo.png" style="width:80px" alt="">
+
+  <img
+   src="drex-logo.png"
+   style="width:80px"
+   alt="DREX"
+  >
+
   <h2>DREX</h2>
+
   <p>
    منصة تجمع محتوى DREX وحساباته وبثوثه في تجربة واحدة.
    يمكنك تعديل هذه النبذة وإضافة أي معلومات تريدها.
   </p>
+
  </div>
+
 </div>
+
 </section>
 
 <!-- STORE -->
 <section id="store">
+
 <div class="container">
+
  <div class="panel coming reveal">
-  <div class="kicker">DREX STORE</div>
-  <h2>Coming Soon</h2>
-  <p>متجر DREX قادم قريبًا.</p>
-  <a class="main-btn" href="#support">تابع التحديثات</a>
+
+  <div class="kicker">
+   DREX STORE
+  </div>
+
+  <h2>
+   Coming Soon
+  </h2>
+
+  <p>
+   متجر DREX قادم قريبًا.
+  </p>
+
+  <a
+   class="main-btn"
+   href="#support"
+  >
+   تابع التحديثات
+  </a>
+
  </div>
+
 </div>
+
 </section>
 
 <!-- SUPPORT -->
 <section id="support">
+
 <div class="container">
+
  <div class="panel support reveal">
-  <h2>تحتاج مساعدة؟</h2>
-  <p>تواصل مع الدعم مباشرة.</p>
-  <a class="main-btn" href="https://t.me/ROOE11" target="_blank">تواصل مع الدعم</a>
+
+  <h2>
+   تحتاج مساعدة؟
+  </h2>
+
+  <p>
+   تواصل مع الدعم مباشرة.
+  </p>
+
+  <a
+   class="main-btn"
+   href="https://t.me/ROOE11"
+   target="_blank"
+  >
+   تواصل مع الدعم
+  </a>
+
  </div>
+
 </div>
+
 </section>
 
 </main>
+
+<!-- FOOTER -->
 
 <footer>
  DREX © 2026 — Official Digital Hub
 </footer>
 
 <!-- FLOAT SHARE -->
-<button class="float" id="shareBtn" title="مشاركة">
- <svg viewBox="0 0 24 24" fill="currentColor">
+
+<button
+ class="float"
+ id="shareBtn"
+ title="مشاركة"
+>
+
+ <svg
+  viewBox="0 0 24 24"
+  fill="currentColor"
+ >
+
   <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.03-.47-.09-.7l7.05-4.11A2.99 2.99 0 1 0 15 5c0 .24.03.47.09.7L8.04 9.81A3 3 0 1 0 8 14.19l7.12 4.16c-.07.21-.12.43-.12.65a3 3 0 1 0 3-2.92Z"/>
+
  </svg>
+
 </button>
 
 <!-- SHARE MODAL -->
+
 <div class="modal" id="modal">
+
  <div class="modal-box">
-  <img src="drex-logo.png" alt="DREX">
-  <h2>DREX</h2>
-  <p>شارك موقع DREX مع أصدقائك.</p>
+
+  <img
+   src="drex-logo.png"
+   alt="DREX"
+  >
+
+  <h2>
+   DREX
+  </h2>
+
+  <p>
+   شارك موقع DREX مع أصدقائك.
+  </p>
+
   <div class="modal-actions">
-   <button class="main-btn" id="copyBtn">نسخ الرابط</button>
-   <button class="main-btn" id="closeModal">إغلاق</button>
+
+   <button
+    class="main-btn"
+    id="copyBtn"
+   >
+    نسخ الرابط
+   </button>
+
+   <button
+    class="main-btn"
+    id="closeModal"
+   >
+    إغلاق
+   </button>
+
   </div>
+
  </div>
+
 </div>
 
 <script>
-/* LOADER */
+
+/* =========================
+   LOADER
+   ========================= */
+
 window.addEventListener("load",()=>{
- setTimeout(()=>document.getElementById("loader").style.opacity="0",500);
- setTimeout(()=>document.getElementById("loader").style.display="none",1000);
+
+ setTimeout(()=>{
+  document.getElementById("loader").style.opacity="0";
+ },500);
+
+ setTimeout(()=>{
+  document.getElementById("loader").style.display="none";
+ },1000);
+
 });
 
-/* HEADER */
+
+/* =========================
+   HEADER
+   ========================= */
+
 window.addEventListener("scroll",()=>{
- document.getElementById("header")
- .classList.toggle("scrolled",scrollY>20);
+
+ document
+  .getElementById("header")
+  .classList
+  .toggle("scrolled",scrollY>20);
+
 });
 
-/* MENU */
+
+/* =========================
+   MENU
+   ========================= */
+
 const side=document.getElementById("side");
 const overlay=document.getElementById("overlay");
 
 document.getElementById("openMenu").onclick=()=>{
+
  side.classList.add("on");
  overlay.classList.add("on");
+
 };
+
 function closeSide(){
+
  side.classList.remove("on");
  overlay.classList.remove("on");
+
 }
+
 document.getElementById("close").onclick=closeSide;
+
 overlay.onclick=closeSide;
 
 document.querySelectorAll(".navs a").forEach(a=>{
+
  a.onclick=closeSide;
+
 });
 
-/* REVEAL */
+
+/* =========================
+   REVEAL
+   ========================= */
+
 const obs=new IntersectionObserver(entries=>{
+
  entries.forEach(e=>{
+
   if(e.isIntersecting){
+
    e.target.classList.add("show");
+
    obs.unobserve(e.target);
+
   }
+
  });
+
 },{threshold:.1});
 
-document.querySelectorAll(".reveal").forEach(x=>obs.observe(x));
+document
+ .querySelectorAll(".reveal")
+ .forEach(x=>obs.observe(x));
 
-/* SEARCH */
+
+/* =========================
+   SEARCH
+   ========================= */
+
 const search=document.getElementById("search");
+
 search.addEventListener("input",()=>{
+
  const q=search.value.toLowerCase().trim();
 
- document.querySelectorAll(".vault-card").forEach(card=>{
-  const title=card.dataset.title.toLowerCase();
-  card.style.display=!q||title.includes(q)?"block":"none";
- });
+ document
+  .querySelectorAll(".vault-card")
+  .forEach(card=>{
+
+   const title=
+    card.dataset.title.toLowerCase();
+
+   card.style.display=
+    !q || title.includes(q)
+    ? "block"
+    : "none";
+
+  });
+
 });
 
-/* SHARE */
+
+/* =========================
+   SHARE
+   ========================= */
+
 const modal=document.getElementById("modal");
 
 document.getElementById("shareBtn").onclick=()=>{
+
  modal.classList.add("show");
+
 };
 
 document.getElementById("closeModal").onclick=()=>{
+
  modal.classList.remove("show");
+
 };
 
 document.getElementById("copyBtn").onclick=async()=>{
+
  try{
+
   await navigator.clipboard.writeText(location.href);
-  document.getElementById("copyBtn").textContent="تم نسخ الرابط ✓";
+
+  document.getElementById("copyBtn").textContent=
+   "تم نسخ الرابط ✓";
+
   setTimeout(()=>{
-   document.getElementById("copyBtn").textContent="نسخ الرابط";
+
+   document.getElementById("copyBtn").textContent=
+    "نسخ الرابط";
+
   },1800);
+
  }catch{
+
   alert("انسخ الرابط من شريط المتصفح");
+
  }
+
 };
 
-/* EASTER EGG — اضغط شعار DREX 7 مرات */
+
+/* =========================
+   EASTER EGG
+   اضغط شعار DREX 7 مرات
+   ========================= */
+
 let clicks=0;
-document.querySelector(".logo img").addEventListener("click",()=>{
- clicks++;
 
- if(clicks>=7){
-  clicks=0;
+document
+ .querySelector(".logo img")
+ .addEventListener("click",()=>{
 
-  document.body.animate(
-   [
-    {filter:"brightness(1)"},
-    {filter:"brightness(1.8)"},
-    {filter:"brightness(1)"}
-   ],
-   {duration:700}
-  );
+  clicks++;
 
-  alert("DREX MODE ⚡");
- }
-});
+  if(clicks>=7){
 
-/* KEYBOARD SHORTCUTS */
+   clicks=0;
+
+   document.body.animate(
+    [
+     {filter:"brightness(1)"},
+     {filter:"brightness(1.8)"},
+     {filter:"brightness(1)"}
+    ],
+    {duration:700}
+   );
+
+   alert("DREX MODE ⚡");
+
+  }
+
+ });
+
+
+/* =========================
+   KEYBOARD SHORTCUTS
+   ========================= */
+
 document.addEventListener("keydown",e=>{
+
  if(e.target.tagName==="INPUT") return;
 
  if(e.key.toLowerCase()==="h")
   location.hash="home";
 
  if(e.key.toLowerCase()==="y")
-  window.open("https://youtube.com/@drex_7a","_blank");
+  window.open(
+   "https://youtube.com/@drex_7a",
+   "_blank"
+  );
 
  if(e.key.toLowerCase()==="k")
-  window.open("https://kick.com/drex-7a","_blank");
+  window.open(
+   "https://kick.com/drex-7a",
+   "_blank"
+  );
 
  if(e.key.toLowerCase()==="s")
   location.hash="support";
+
 });
+
 </script>
 
 </body>

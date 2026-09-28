@@ -25,7 +25,6 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-
 html{scroll-behavior:smooth}
 
 body{
@@ -627,9 +626,7 @@ section{
  margin-top:5px;
 }
 
-/* =========================
-   KICK VERIFICATION GOAL
-   ========================= */
+/* KICK VERIFICATION GOAL */
 
 .goal{
  padding:30px;
@@ -1083,7 +1080,7 @@ footer{
   <!-- YOUTUBE -->
   <a href="https://youtube.com/@drex_7a" target="_blank" title="YouTube">
    <svg viewBox="0 0 24 24">
-    <path d="M23.5 6.2a3 3 0 0 0-2.12-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.58A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.12c1.88.58 9.38.58 9.38.58s7.5 0 9.38-.58a3 3 0 0 0 2.12-2.12A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6 3.5-6 3.5Z"/>
+    <path d="M23.5 6.2a3 3 0 0 0-2.12-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.58A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.12 2.12c1.88.58 9.38.58 9.38.58s7.5 0 9.38-.58a3 3 0 0 0 2.12-2.12A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5v-7l6 3.5 6 3.5-6 3.5Z"/>
    </svg>
   </a>
 
@@ -1095,7 +1092,7 @@ footer{
   </a>
 
   <!-- TELEGRAM -->
-  <a href="https://t.me/drexx7a" target="_blank" title="Telegram">
+  <a href="https://t.me/drexx7a2" target="_blank" title="Telegram">
    <svg viewBox="0 0 24 24">
     <path d="M21.8 4.2 18.7 19c-.24 1.05-.85 1.31-1.72.82l-4.75-3.5-2.29 2.2c-.25.25-.46.46-.94.46l.34-4.84 8.81-7.96c.38-.34-.08-.53-.59-.19L6.67 12.6l-4.66-1.46c-1.01-.32-1.03-1.01.21-1.5L20.4 3.18c.84-.31 1.58.2 1.4 1.02Z"/>
    </svg>
@@ -1506,10 +1503,7 @@ footer{
 
 </section>
 
-<!-- =========================
-     GOAL / KICK VERIFICATION
-     ========================= -->
-
+<!-- GOAL -->
 <section id="goal">
 
 <div class="container">
@@ -1528,7 +1522,6 @@ footer{
 
  <div class="panel goal reveal">
 
-  <!-- MAIN -->
   <div class="goal-value">
    2 / 4
   </div>
@@ -1553,10 +1546,8 @@ footer{
 
   </div>
 
-  <!-- GOALS -->
   <div class="kick-goals">
 
-   <!-- MONETIZATION -->
    <div class="kick-goal">
 
     <div class="kick-goal-top">
@@ -1586,7 +1577,6 @@ footer{
 
    </div>
 
-   <!-- VIEWERS -->
    <div class="kick-goal">
 
     <div class="kick-goal-top">
@@ -1615,7 +1605,6 @@ footer{
 
    </div>
 
-   <!-- STREAM HOURS -->
    <div class="kick-goal">
 
     <div class="kick-goal-top">
@@ -1644,7 +1633,6 @@ footer{
 
    </div>
 
-   <!-- CHAT -->
    <div class="kick-goal">
 
     <div class="kick-goal-top">
@@ -1814,8 +1802,6 @@ footer{
 
 </main>
 
-<!-- FOOTER -->
-
 <footer>
  DREX © 2026 — Official Digital Hub
 </footer>
@@ -1882,9 +1868,7 @@ footer{
 
 <script>
 
-/* =========================
-   LOADER
-   ========================= */
+/* LOADER */
 
 window.addEventListener("load",()=>{
 
@@ -1898,10 +1882,7 @@ window.addEventListener("load",()=>{
 
 });
 
-
-/* =========================
-   HEADER
-   ========================= */
+/* HEADER */
 
 window.addEventListener("scroll",()=>{
 
@@ -1912,10 +1893,7 @@ window.addEventListener("scroll",()=>{
 
 });
 
-
-/* =========================
-   MENU
-   ========================= */
+/* MENU */
 
 const side=document.getElementById("side");
 const overlay=document.getElementById("overlay");
@@ -1935,19 +1913,13 @@ function closeSide(){
 }
 
 document.getElementById("close").onclick=closeSide;
-
 overlay.onclick=closeSide;
 
 document.querySelectorAll(".navs a").forEach(a=>{
-
  a.onclick=closeSide;
-
 });
 
-
-/* =========================
-   REVEAL
-   ========================= */
+/* REVEAL */
 
 const obs=new IntersectionObserver(entries=>{
 
@@ -1956,7 +1928,6 @@ const obs=new IntersectionObserver(entries=>{
   if(e.isIntersecting){
 
    e.target.classList.add("show");
-
    obs.unobserve(e.target);
 
   }
@@ -1969,10 +1940,7 @@ document
  .querySelectorAll(".reveal")
  .forEach(x=>obs.observe(x));
 
-
-/* =========================
-   SEARCH
-   ========================= */
+/* SEARCH */
 
 const search=document.getElementById("search");
 
@@ -1996,10 +1964,7 @@ search.addEventListener("input",()=>{
 
 });
 
-
-/* =========================
-   SHARE
-   ========================= */
+/* SHARE */
 
 const modal=document.getElementById("modal");
 
@@ -2039,11 +2004,7 @@ document.getElementById("copyBtn").onclick=async()=>{
 
 };
 
-
-/* =========================
-   EASTER EGG
-   اضغط شعار DREX 7 مرات
-   ========================= */
+/* EASTER EGG */
 
 let clicks=0;
 
@@ -2072,10 +2033,7 @@ document
 
  });
 
-
-/* =========================
-   KEYBOARD SHORTCUTS
-   ========================= */
+/* KEYBOARD SHORTCUTS */
 
 document.addEventListener("keydown",e=>{
 
